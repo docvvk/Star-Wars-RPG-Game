@@ -1,7 +1,9 @@
 body {
-	background-image: url("../images/bgStarWars2.jpg");
+	background-image: url("../images/plane1.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
+	box-sizing: border-box;
+
 }
 
 #RPG {
@@ -9,15 +11,16 @@ body {
 	font-family: 'Eater', sans-serif;
 	color: rgb(17, 0, 32);
 	text-align: center;
+	margin: 25px;
 }
 
 .firstRow{
 	border-style: solid;
 	border-width: 3px;
-	border-color: white;
+	border-color: rgb(245, 210, 122);
 	box-sizing: border-box;
 	outline-style: solid;
-	outline-color: rgb(22, 219, 216);
+	outline-color: rgb(0, 43, 33);
 	outline-width: 3px;
 	align-items: center;
 	background-color: white;
@@ -34,8 +37,7 @@ body {
 
 #imageo, #imagel, #imageds, #imagerq {
 	width: 100%;
-	height: 78%;
-	margin-top: 8px;
+	height: 75%;
 }
 
 .col-12 {
@@ -46,12 +48,16 @@ body {
 }
 
 .padLeft {
-	padding-left: 20px;
-	padding-top: 15px;
+	margin: 30px;
 	text-align: center;
 }
 
 #picRow {
 	width: 80%;
-	margin-left: 10vw;
+	margin-left: 25vw;
+}
+
+.char1,.char2,.char3 {
+	position: relative;
+	left: 41.5vw;
 }

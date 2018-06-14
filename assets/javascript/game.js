@@ -24,8 +24,8 @@
     var sound3 = new Audio (src='assets/sounds/saberon.mp3');
     var sound4 = new Audio (src='assets/sounds/saberclash.mp3');
     var sound5 = new Audio (src='assets/sounds/set-for-stun.mp3');
-    var sound6 = new Audio (src='assets/sounds/spin1.mp3');
-    var sound7 = new Audio (src='assets/sounds/spin2.mp3');
+    var sound6 = new Audio (src='assets/sounds/saberclash5.mp3');
+    var sound7 = new Audio (src='assets/sounds/battle-of-the-heroes.mp3');
     var sound8 = new Audio (src='assets/sounds/swing1.mp3');
     var sound9 = new Audio (src='assets/sounds/swing2.mp3');
 
@@ -33,6 +33,8 @@
     //Defining functions
 
     function reset() {                  // Reset game to default settings
+
+        sound7.play();
         
         $("#picRow").show();            // Showing all characters available to play
         $(".restart").hide();
@@ -281,13 +283,16 @@ $(document).ready(function() {
         // If all the enemies have been defeated and the player still has health points, Player wins.
         if($(".move").children().length == 0) {
 
+            sound1.play();
+
+
             // Clear all the text from screen and let user know about the win.
             $(".youAttacked").empty();
             $(".attackedBack").empty();
             $(".youDefeated").empty();
             $(".noEnemy").empty();
             $(".youWon").html("You Won !! Game Over !!");
-
+            
             // Show the restart button
             $(".restart").show();
 
@@ -314,7 +319,7 @@ $(document).ready(function() {
 
             // Click restart button to start the game again
             $(".restart").on("click", function () {
-                sound1.play(); 
+                // sound1.play(); 
                 location.reload(true);
              });
         }
