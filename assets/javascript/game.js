@@ -1,6 +1,3 @@
-
-
-
     // Defining global variables
     var attack;
     var defend;
@@ -20,6 +17,19 @@
     var myChar = "";
     var myDef = "";
 
+    //Defining sounds
+
+    var sound1 = new Audio (src='assets/sounds/force.mp3');
+    var sound2 = new Audio (src='assets/sounds/blaster-firing.mp3');
+    var sound3 = new Audio (src='assets/sounds/saberon.mp3');
+    var sound4 = new Audio (src='assets/sounds/saberclash.mp3');
+    var sound5 = new Audio (src='assets/sounds/set-for-stun.mp3');
+    var sound6 = new Audio (src='assets/sounds/spin1.mp3');
+    var sound7 = new Audio (src='assets/sounds/spin2.mp3');
+    var sound8 = new Audio (src='assets/sounds/swing1.mp3');
+    var sound9 = new Audio (src='assets/sounds/swing2.mp3');
+
+
     //Defining functions
 
     function reset() {                  // Reset game to default settings
@@ -27,7 +37,7 @@
         $("#picRow").show();            // Showing all characters available to play
         $(".restart").hide();
         $(".attackButton").show();
-        
+
         myChar = "";
         myDef = "";
 
@@ -35,13 +45,13 @@
         characters.ObiWan.healthPoints = 120;
         characters.LukeSky.healthPoints = 100;
         characters.DarSid.healthPoints = 150;
-        characters.DarMaul.healthPoints = 180;
+        characters.ReyQuer.healthPoints = 180;
 
         // Reset Attack Power
         characters.ObiWan.attackPower = 8;
         characters.LukeSky.attackPower = 10;
         characters.DarSid.attackPower = 10;
-        characters.DarMaul.attackPower = 12;
+        characters.ReyQuer.attackPower = 12;
 
         // Delete all text in game
         $(".youAttacked").empty();
@@ -55,11 +65,11 @@
         $(".nameo").html(characters.ObiWan.fullName);
         $(".namel").html(characters.LukeSky.fullName);
         $(".nameds").html(characters.DarSid.fullName);
-        $(".namedm").html(characters.DarMaul.fullName);
+        $(".namerq").html(characters.ReyQuer.fullName);
 
         // Adding image for each character
         $("#darthS").appendTo("#picRow");
-        $("#darthM").appendTo("#picRow");
+        $("#reyQ").appendTo("#picRow");
         $("#luke").appendTo("#picRow");
         $("#obi").appendTo("#picRow");
 
@@ -67,11 +77,11 @@
         $(".ob1hp").html(characters.ObiWan.healthPoints);
         $(".lukehp").html(characters.LukeSky.healthPoints);
         $(".darthshp").html(characters.DarSid.healthPoints);
-        $(".darthmhp").html(characters.DarMaul.healthPoints);
+        $(".reyhp").html(characters.ReyQuer.healthPoints);
 
         // Reset border colors. 
-        $(".firstRow").css({"background-color": "white", "outline-color": "limegreen", 
-        "border-width": "3px", "outline-style": "solid", "border-color": "white", "outline-width": "3px"});
+        $(".firstRow").css({"background-color": "white", "outline-color": "rgb(22, 219, 216", 
+        "border-width": "1px", "outline-style": "solid", "border-color": "white", "outline-width": "2px"});
     };
     
     // Array to hold each character stats
@@ -82,7 +92,7 @@
                 visual: 'assets/images/Ovi-Van-Kenobi.jpg',
                 healthPoints: 120,
                 attackPower: 8,
-                fullName: "Obi-Van Kenobi",
+                fullName: "Obi Kenobi",
                 counterAttackPower: 24
                 },
         
@@ -104,12 +114,12 @@
                 counterAttackPower: 20
                 },
         
-        DarMaul: {
-                name: "DarMaul",
+        ReyQuer: {
+                name: "ReyQuer",
                 healthPoints: 180,
                 visual: 'assets/images/Rey_Quer.jpg',
                 attackPower: 12,
-                fullName: "Darth Maul",
+                fullName: "Rey Quer",
                 counterAttackPower: 25
                 } 
     }
@@ -154,12 +164,12 @@ $(document).ready(function() {
             attack = characters.DarSid;
         }
 
-        else if (yourChar == characters.DarMaul.name) {
-            attackerHP = characters.DarMaul.healthPoints;
-            attackerAP = characters.DarMaul.attackPower;
-            attackerCAP = characters.DarMaul.counterAttackPower;
-            attackerFN = characters.DarMaul.fullName;
-            attack = characters.DarMaul;
+        else if (yourChar == characters.ReyQuer.name) {
+            attackerHP = characters.ReyQuer.healthPoints;
+            attackerAP = characters.ReyQuer.attackPower;
+            attackerCAP = characters.ReyQuer.counterAttackPower;
+            attackerFN = characters.ReyQuer.fullName;
+            attack = characters.ReyQuer;
         }
 
         // Cloning remaining three characters to "Enemies available to attack" row
@@ -168,7 +178,7 @@ $(document).ready(function() {
             $("._" + [i]).not(myChar).appendTo("#enemies" + [i]);
         
         // Changing background for characters
-            $("._" + [i]).not(myChar).css({"background-color": "red", "outline-color": "black", "border-width": "3px", "outline-style": "solid",
+            $("._" + [i]).not(myChar).css({"background-color": "skyblue", "outline-color": "black", "border-width": "3px", "outline-style": "solid",
             "border-color": "black", "outline-width": "1px"});
         }
 
@@ -209,18 +219,20 @@ $(document).ready(function() {
             defenderFN = characters.DarSid.fullName;
             defend = characters.DarSid;
         }
-        else if (yourDef == characters.DarMaul.name) {
-            defenderHP = characters.DarMaul.healthPoints;
-            defenderAP = characters.DarMaul.attackPower;
-            defenderCAP = characters.DarMaul.counterAttackPower;
-            defenderFN = characters.DarMaul.fullName;
-            defend = characters.DarMaul;
+        else if (yourDef == characters.ReyQuer.name) {
+            defenderHP = characters.ReyQuer.healthPoints;
+            defenderAP = characters.ReyQuer.attackPower;
+            defenderCAP = characters.ReyQuer.counterAttackPower;
+            defenderFN = characters.ReyQuer.fullName;
+            defend = characters.ReyQuer;
         }
      });
 
     // When user clicks attack button, your character's health points
     // going down = counter attack points of defender character
     $(".attackButton").on("click", function() {    // When the button is clicked
+
+        sound2.play();
 
         // If no one in defender row, game says "No enemy here"
         if ($("#defender").children().length == 0) {
@@ -283,8 +295,6 @@ $(document).ready(function() {
             $(".restart").on("click", function () { 
                 location.reload(true);
              });
-
-
         }
 
         // If ypur character hp = 0, you loose.
@@ -303,16 +313,10 @@ $(document).ready(function() {
             $(".youLose").html("You've been defeated...GAME OVER !!");
 
             // Click restart button to start the game again
-            $(".restart").on("click", function () { 
+            $(".restart").on("click", function () {
+                sound1.play(); 
                 location.reload(true);
              });
         }
     });
-
-
-
-
-
-
-
 });
