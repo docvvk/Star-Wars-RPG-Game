@@ -34,7 +34,7 @@
 
     function reset() {                  // Reset game to default settings
 
-        sound7.play();
+        // sound7.play();
         
         $("#picRow").show();            // Showing all characters available to play
         $(".restart").hide();
@@ -291,7 +291,7 @@ $(document).ready(function() {
             $(".attackedBack").empty();
             $(".youDefeated").empty();
             $(".noEnemy").empty();
-            $(".youWon").html("You Won !! Game Over !!");
+            // $(".youWon").html("You Won !! Game Over !!");
             
             // Show the restart button
             $(".restart").show();
@@ -315,6 +315,9 @@ $(document).ready(function() {
             $(".youAttacked").empty();
             $(".attackedBack").empty();
             $(".youDefeated").empty();
+            $(".youWon").empty();
+
+
             $(".youLose").html("You've been defeated...GAME OVER !!");
 
             // Click restart button to start the game again
